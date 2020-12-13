@@ -1,14 +1,13 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
 async function writeEmailToSheet(email) {
+  console.log(process.env);
   const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
 
   await doc.useServiceAccountAuth({
     client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     private_key: process.env.GOOGLE_PRIVATE_KEY,
   });
-
-  await doc.loadInfo();
 
   const sheet = doc.sheetsByIndex[0];
   await sheet.addRow({ email });
