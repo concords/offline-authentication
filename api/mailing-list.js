@@ -18,7 +18,11 @@ async function writeEmailToSheet(email) {
 
 module.exports = async (req, res) => {
   if (req.query.email) {
-    await writeEmailToSheet(req.query.email);
+    try {
+      await writeEmailToSheet(req.query.email);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   res.json({
