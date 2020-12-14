@@ -8,7 +8,7 @@ async function writeEmailToSheet(email) {
     private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
   });
 
-  doc.loadInfo()
+  await doc.loadInfo()
 
   const sheet = doc.sheetsByIndex[0];
   await sheet.addRow({ email });
